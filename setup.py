@@ -9,7 +9,10 @@ VERSION_PATH = path.join(path.abspath(path.dirname(__file__)), "VERSION")
 with open(VERSION_PATH, encoding="utf-8", mode="r") as f:
     VERSION = f.read().strip()
 
-_dependencies = []
+_dependencies = [
+    "pydantic~=2.5.3",
+    "pydantic-settings~=2.1.0",
+]
 
 _dev_dependencies = [
     "black==21.5b2",
