@@ -10,6 +10,7 @@ with open(VERSION_PATH, encoding="utf-8", mode="r") as f:
     VERSION = f.read().strip()
 
 _dependencies = [
+    "PyYaml~=6.0.1",
     "pydantic~=2.5.3",
     "pydantic-settings~=2.1.0",
 ]

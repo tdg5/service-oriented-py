@@ -1,3 +1,4 @@
 dirname
+dotenv
 exinfo
 pydantic

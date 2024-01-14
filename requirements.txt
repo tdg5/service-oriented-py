@@ -72,6 +72,7 @@ SecretStorage==3.3.3
 toml==0.10.2
 tomli==2.0.1
 twine==4.0.2
+types-PyYAML==6.0.12.12
 typing_extensions==4.9.0
 urllib3==2.1.0
 virtualenv==20.25.0
