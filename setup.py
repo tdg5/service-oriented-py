@@ -88,5 +88,14 @@ setup(
     install_requires=_setup_install_requires(),
     entry_points=_setup_entry_points(),
     python_requires=">=3.9.0",
-    classifiers=["[TODO]"],
+    classifiers=[
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+    ],
 )
