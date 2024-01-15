@@ -8,8 +8,7 @@ markers = ["integration_test: marks tests as integration tests (deselect with '-
 [tool.black]
 line-length = 88
 target-version = ["py39"]
-include = ["service_oriented", "service_oriented_test"]
-exclude = ["README.md"]
+include = "service_oriented(_test)?/.*\\.py$"
 
 [tool.isort]
 include_trailing_comma = true

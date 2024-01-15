@@ -16,9 +16,8 @@ _dependencies = [
 ]
 
 _dev_dependencies = [
-    "black==21.5b2",
+    "black~=23.12.1",
     "build==1.0.3",
-    "click<8.1",
     "dlint==0.14.1",
     "flake8-comprehensions==3.14.0",
     "flake8-eradicate==1.5.0",
@@ -31,7 +30,7 @@ _dev_dependencies = [
     "pre-commit==3.6.0",
     "pytest-watch~=4.2.0",
     "pytest~=7.4.0",
-    "safety==2.3.5",
+    "safety==2.3.4",
     "twine==4.0.2",
     "wheel>=0.42.0",
 ]
