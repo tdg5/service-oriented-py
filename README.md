@@ -1,3 +1,3 @@
 # service-oriented-py
 
-Toolkit for building service oriented applications in python.
+`service-oriented-py` is a toolkit for building service oriented applications in python.
