@@ -10,6 +10,7 @@ from service_oriented.deployment_environment import DeploymentEnvironment
 
 class BaseConfig(BaseSettings):
     deployment_environment: DeploymentEnvironment
+    entry_point: str
     yaml_config_path: Optional[str] = None
 
     def __init__(self, *args: Any, **kwargs: Any):

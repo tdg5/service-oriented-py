@@ -5,14 +5,9 @@ import pytest
 from pydantic import ValidationError
 
 from service_oriented.application.config.base_config import BaseConfig
-from service_oriented.deployment_environment import DeploymentEnvironment
-
-
-TEST_DEPLOYMENT_ENVIRONMENT = DeploymentEnvironment(
-    identifier="test",
-    region="test",
-    stage="test",
-    vendor="test",
+from service_oriented_test.test_helpers import (
+    TEST_DEPLOYMENT_ENVIRONMENT,
+    TEST_ENTRY_POINT,
 )
 
 
@@ -24,6 +19,7 @@ def test_env_nested_delimiter_is_required() -> None:
     with pytest.raises(RuntimeError) as exinfo:
         ConfigWithoutEnvNestedDelimiter(
             deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+            entry_point=TEST_ENTRY_POINT,
         )
     assert RuntimeError == exinfo.type
     exception_message = str(exinfo.value)
@@ -36,7 +32,10 @@ class ConfigWithoutEnvPrefix(BaseConfig, env_nested_delimiter="__"):
 
 def test_env_prefix_is_required() -> None:
     with pytest.raises(RuntimeError) as exinfo:
-        ConfigWithoutEnvPrefix(deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT)
+        ConfigWithoutEnvPrefix(
+            deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+            entry_point=TEST_ENTRY_POINT,
+        )
     assert RuntimeError == exinfo.type
     exception_message = str(exinfo.value)
     assert "env_prefix model config is required" == exception_message
@@ -53,14 +52,16 @@ class ConfigWithAllTheThings(
 def test_deployment_environment_is_accessible() -> None:
     config = ConfigWithAllTheThings(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+        entry_point=TEST_ENTRY_POINT,
     )
-    deployment_environment = config.deployment_environment
-    assert TEST_DEPLOYMENT_ENVIRONMENT == deployment_environment
+    assert TEST_DEPLOYMENT_ENVIRONMENT == config.deployment_environment
 
 
 def test_deployment_environment_is_required() -> None:
     with pytest.raises(ValidationError) as exinfo:
-        ConfigWithAllTheThings()
+        ConfigWithAllTheThings(
+            entry_point=TEST_ENTRY_POINT,
+        )
     assert ValidationError == exinfo.type
     exception_message = str(exinfo.value)
     assert "1 validation error for ConfigWithAllTheThings" in exception_message
@@ -68,10 +69,31 @@ def test_deployment_environment_is_required() -> None:
     assert "Field required" in exception_message
 
 
+def test_entry_point_is_accessible() -> None:
+    config = ConfigWithAllTheThings(
+        deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+        entry_point=TEST_ENTRY_POINT,
+    )
+    assert TEST_ENTRY_POINT == config.entry_point
+
+
+def test_entry_point_is_required() -> None:
+    with pytest.raises(ValidationError) as exinfo:
+        ConfigWithAllTheThings(
+            deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+        )
+    assert ValidationError == exinfo.type
+    exception_message = str(exinfo.value)
+    assert "1 validation error for ConfigWithAllTheThings" in exception_message
+    assert "entry_point" in exception_message
+    assert "Field required" in exception_message
+
+
 def test_yaml_config_path_is_accessible() -> None:
     yaml_config_path = "foo"
     config = ConfigWithAllTheThings(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+        entry_point=TEST_ENTRY_POINT,
         yaml_config_path=yaml_config_path,
     )
     assert yaml_config_path == config.yaml_config_path
@@ -80,6 +102,7 @@ def test_yaml_config_path_is_accessible() -> None:
 def test_yaml_config_path_is_optional() -> None:
     config = ConfigWithAllTheThings(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+        entry_point=TEST_ENTRY_POINT,
     )
     assert config.yaml_config_path is None
 
@@ -127,6 +150,7 @@ def test_setting_source_priorities() -> None:
                     _secrets_dir=secrets_dir,
                     layer_one="init",
                     deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+                    entry_point=TEST_ENTRY_POINT,
                     yaml_config_path=yaml_file.name,
                 )
                 assert "init" == config.layer_one
