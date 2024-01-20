@@ -1,10 +1,6 @@
 from typing import Any, Optional, Tuple, Type
 
-from pydantic_settings import (
-    BaseSettings,
-    PydanticBaseSettingsSource,
-    SettingsConfigDict,
-)
+from pydantic_settings import BaseSettings, PydanticBaseSettingsSource
 
 from service_oriented.application.config.yaml_config_settings_source import (
     YamlConfigSettingsSource,
@@ -13,8 +9,6 @@ from service_oriented.deployment_environment import DeploymentEnvironment
 
 
 class BaseConfig(BaseSettings):
-    model_config = SettingsConfigDict()
-
     deployment_environment: DeploymentEnvironment
     yaml_config_path: Optional[str] = None
 

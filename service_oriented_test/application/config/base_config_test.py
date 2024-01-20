@@ -3,7 +3,6 @@ from tempfile import NamedTemporaryFile, TemporaryDirectory
 
 import pytest
 from pydantic import ValidationError
-from pydantic_settings import SettingsConfigDict
 
 from service_oriented.application.config.base_config import BaseConfig
 from service_oriented.deployment_environment import DeploymentEnvironment
@@ -17,8 +16,8 @@ TEST_DEPLOYMENT_ENVIRONMENT = DeploymentEnvironment(
 )
 
 
-class ConfigWithoutEnvNestedDelimiter(BaseConfig):
-    model_config = SettingsConfigDict(env_prefix="prefix_")
+class ConfigWithoutEnvNestedDelimiter(BaseConfig, env_prefix="prefix_"):
+    pass
 
 
 def test_env_nested_delimiter_is_required() -> None:
@@ -31,8 +30,8 @@ def test_env_nested_delimiter_is_required() -> None:
     assert "env_nested_delimiter model config is required" == exception_message
 
 
-class ConfigWithoutEnvPrefix(BaseConfig):
-    model_config = SettingsConfigDict(env_nested_delimiter="__")
+class ConfigWithoutEnvPrefix(BaseConfig, env_nested_delimiter="__"):
+    pass
 
 
 def test_env_prefix_is_required() -> None:
@@ -43,11 +42,12 @@ def test_env_prefix_is_required() -> None:
     assert "env_prefix model config is required" == exception_message
 
 
-class ConfigWithAllTheThings(BaseConfig):
-    model_config = SettingsConfigDict(
-        env_nested_delimiter="__",
-        env_prefix="base_config_test_",
-    )
+class ConfigWithAllTheThings(
+    BaseConfig,
+    env_nested_delimiter="__",
+    env_prefix="base_config_test_",
+):
+    pass
 
 
 def test_deployment_environment_is_accessible() -> None:
