@@ -39,6 +39,8 @@ _dev_dependencies = [
 def _setup_packages() -> List:
     default_packages = [
         "service_oriented",
+        "service_oriented.application",
+        "service_oriented.application.config",
     ]
     return find_packages(
         ".",
