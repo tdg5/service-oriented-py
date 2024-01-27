@@ -10,9 +10,25 @@ from service_oriented.application.config.yaml_config_settings_source import (
 from service_oriented.deployment_environment import DeploymentEnvironment
 
 
-def parse_deployment_environment_stub(value: Any, info: ValidationInfo) -> Any:
+def handle_alternative_deployment_environment_formats(
+    value: Any,
+    info: ValidationInfo,
+) -> Any:
     if isinstance(value, str):
         return DeploymentEnvironment.from_stub(value)
+    elif isinstance(value, dict):
+        if (
+            isinstance(identifier := value.get("identifier"), str)
+            and isinstance(region := value.get("region"), str)
+            and isinstance(stage := value.get("stage"), str)
+            and isinstance(vendor := value.get("vendor"), str)
+        ):
+            return DeploymentEnvironment(
+                identifier=identifier,
+                region=region,
+                stage=stage,
+                vendor=vendor,
+            )
 
     return value
 
@@ -20,7 +36,7 @@ def parse_deployment_environment_stub(value: Any, info: ValidationInfo) -> Any:
 class BaseConfig(BaseSettings):
     deployment_environment: Annotated[
         DeploymentEnvironment,
-        BeforeValidator(parse_deployment_environment_stub),
+        BeforeValidator(handle_alternative_deployment_environment_formats),
     ]
     entry_point: str
     yaml_config_path: Optional[str] = None
