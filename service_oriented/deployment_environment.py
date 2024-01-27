@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class DeploymentEnvironment:
     def __init__(
         self,
@@ -21,3 +24,12 @@ class DeploymentEnvironment:
             stage=components[0],
             vendor=components[1],
         )
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, DeploymentEnvironment):
+            return False
+
+        return self.stub == other.stub
+
+    def __hash__(self) -> int:
+        return hash(self.stub)

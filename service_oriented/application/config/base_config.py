@@ -1,6 +1,8 @@
 from typing import Any, Optional, Tuple, Type
 
+from pydantic import BeforeValidator, ValidationInfo
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource
+from typing_extensions import Annotated
 
 from service_oriented.application.config.yaml_config_settings_source import (
     YamlConfigSettingsSource,
@@ -8,8 +10,18 @@ from service_oriented.application.config.yaml_config_settings_source import (
 from service_oriented.deployment_environment import DeploymentEnvironment
 
 
+def parse_deployment_environment_stub(value: Any, info: ValidationInfo) -> Any:
+    if isinstance(value, str):
+        return DeploymentEnvironment.from_stub(value)
+
+    return value
+
+
 class BaseConfig(BaseSettings):
-    deployment_environment: DeploymentEnvironment
+    deployment_environment: Annotated[
+        DeploymentEnvironment,
+        BeforeValidator(parse_deployment_environment_stub),
+    ]
     entry_point: str
     yaml_config_path: Optional[str] = None
 

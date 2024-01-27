@@ -69,6 +69,14 @@ def test_deployment_environment_is_required() -> None:
     assert "Field required" in exception_message
 
 
+def test_deployment_environment_can_be_provided_as_a_stub() -> None:
+    config = ConfigWithAllTheThings(
+        deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT.stub,
+        entry_point=TEST_ENTRY_POINT,
+    )
+    assert TEST_DEPLOYMENT_ENVIRONMENT == config.deployment_environment
+
+
 def test_entry_point_is_accessible() -> None:
     config = ConfigWithAllTheThings(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
