@@ -1,12 +1,4 @@
-from service_oriented import DeploymentEnvironment
-
-
-TEST_DEPLOYMENT_ENVIRONMENT = DeploymentEnvironment(
-    identifier="test",
-    region="test",
-    stage="test",
-    vendor="test",
-)
+from service_oriented_test.test_helpers.fixtures import TEST_DEPLOYMENT_ENVIRONMENT
 
 
 TEST_ENTRY_POINT = "test"
