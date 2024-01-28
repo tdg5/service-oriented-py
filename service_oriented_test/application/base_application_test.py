@@ -2,9 +2,9 @@ from typing import Callable
 
 import pytest
 
+from service_oriented.application.base_application import BaseApplication
 from service_oriented.application.config import BaseConfig
 from service_oriented.application.entry_point_spec import EntryPointSpec
-from service_oriented.application.generic_application import GenericApplication
 from service_oriented_test.test_helpers import (
     TEST_DEPLOYMENT_ENVIRONMENT,
     TEST_ENTRY_POINT,
@@ -14,7 +14,7 @@ from service_oriented_test.test_helpers import (
 class Config(
     BaseConfig,
     env_nested_delimiter="__",
-    env_prefix="generic_application_test_",
+    env_prefix="base_application_test_",
 ):
     pass
 
@@ -32,7 +32,7 @@ class CallbackEntryPoint:
         self.on_run_callback()
 
 
-class Application(GenericApplication[Config]):
+class Application(BaseApplication[Config]):
     pass
 
 

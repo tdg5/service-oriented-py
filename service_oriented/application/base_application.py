@@ -8,7 +8,7 @@ C = TypeVar("C", bound=BaseConfig)
 E = TypeVar("E", bound=EntryPointSpec)
 
 
-class GenericApplication(Generic[C]):
+class BaseApplication(Generic[C]):
     def __init__(
         self,
         config: C,
