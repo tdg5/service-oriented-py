@@ -1,21 +1,33 @@
-from typing import Dict, Generic, TypeVar
+from typing import Any, Dict, Generic, Optional, TypeVar
 
 from service_oriented.application.config import BaseConfig
 from service_oriented.application.entry_point_spec import EntryPointSpec
 
 
 C = TypeVar("C", bound=BaseConfig)
-E = TypeVar("E", bound=EntryPointSpec)
 
 
 class BaseApplication(Generic[C]):
+    default_entry_points: Dict[str, EntryPointSpec] = {}
+
+    @classmethod
+    def __init_subclass__(
+        cls,
+        entry_points: Optional[Dict[str, EntryPointSpec]] = None,
+        **kwargs: Any,
+    ):
+        super().__init_subclass__(**kwargs)
+        _entry_points = entry_points or {}
+        cls.default_entry_points = _entry_points
+
     def __init__(
         self,
         config: C,
-        entry_points: Dict[str, E],
+        entry_points: Optional[Dict[str, EntryPointSpec]] = None,
     ):
         self.config: C = config
-        self.entry_points: Dict[str, E] = entry_points
+        _entry_points = entry_points or {}
+        self.entry_points = {**self.default_entry_points, **_entry_points}
 
     def run(self) -> None:
         entry_point_name = self.config.entry_point

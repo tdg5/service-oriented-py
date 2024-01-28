@@ -19,6 +19,10 @@ class Config(
     pass
 
 
+class NoDefaultsApplication(BaseApplication):
+    pass
+
+
 class CallbackEntryPoint:
     def __init__(
         self,
@@ -32,24 +36,44 @@ class CallbackEntryPoint:
         self.on_run_callback()
 
 
-class Application(BaseApplication[Config]):
-    pass
+def test_application_init_subclass() -> None:
+    entry_points = {
+        "other": EntryPointSpec(CallbackEntryPoint),
+    }
+
+    class InitSubclassApplication(BaseApplication, entry_points=entry_points):
+        pass
+
+    assert entry_points == InitSubclassApplication.default_entry_points
 
 
 def test_application_init() -> None:
+    class InitApplication(
+        BaseApplication,
+        entry_points={
+            "default": EntryPointSpec(CallbackEntryPoint),
+            "override": EntryPointSpec(CallbackEntryPoint),
+        },
+    ):
+        pass
+
     config = Config(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
         entry_point=TEST_ENTRY_POINT,
     )
-    entry_points = {
-        "other": EntryPointSpec(CallbackEntryPoint),
+    instance_entry_points = {
+        "instance": EntryPointSpec(CallbackEntryPoint),
+        "override": EntryPointSpec(CallbackEntryPoint),
     }
-    application = Application(
+    application = InitApplication(
         config=config,
-        entry_points=entry_points,
+        entry_points=instance_entry_points,
     )
     assert config == application.config
-    assert entry_points == application.entry_points
+    assert instance_entry_points["instance"] == application.entry_points["instance"]
+    assert instance_entry_points["override"] == application.entry_points["override"]
+    expected_default_entry_point = InitApplication.default_entry_points["default"]
+    assert expected_default_entry_point == application.entry_points["default"]
 
 
 def test_application_run() -> None:
@@ -63,15 +87,15 @@ def test_application_run() -> None:
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
         entry_point=TEST_ENTRY_POINT,
     )
-    entry_points = {
-        TEST_ENTRY_POINT: EntryPointSpec(
-            CallbackEntryPoint,
-            on_run_callback=on_run_callback,
-        ),
-    }
-    application = Application(
+
+    application = NoDefaultsApplication(
         config=config,
-        entry_points=entry_points,
+        entry_points={
+            TEST_ENTRY_POINT: EntryPointSpec(
+                CallbackEntryPoint,
+                on_run_callback=on_run_callback,
+            ),
+        },
     )
 
     application.run()
@@ -83,12 +107,12 @@ def test_application_run_raises_for_unknown_entry_point() -> None:
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
         entry_point="other",
     )
-    entry_points = {
-        TEST_ENTRY_POINT: EntryPointSpec(CallbackEntryPoint),
-    }
-    application = Application(
+
+    application = NoDefaultsApplication(
         config=config,
-        entry_points=entry_points,
+        entry_points={
+            TEST_ENTRY_POINT: EntryPointSpec(CallbackEntryPoint),
+        },
     )
 
     with pytest.raises(RuntimeError) as exinfo:
