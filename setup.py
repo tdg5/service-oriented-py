@@ -11,8 +11,9 @@ with open(VERSION_PATH, encoding="utf-8", mode="r") as f:
 
 _dependencies = [
     "PyYaml~=6.0.1",
-    "pydantic~=2.5.3",
+    "dependency-injector~=4.41.0",
     "pydantic-settings~=2.1.0",
+    "pydantic~=2.5.3",
 ]
 
 _dev_dependencies = [
@@ -28,6 +29,7 @@ _dev_dependencies = [
     "mypy~=1.8.0",
     "pep8-naming==0.13.3",
     "pre-commit==3.6.0",
+    "pytest-mock~=3.12.0",
     "pytest-watch~=4.2.0",
     "pytest~=7.4.0",
     "safety==2.3.4",
@@ -41,6 +43,7 @@ def _setup_packages() -> List:
         "service_oriented",
         "service_oriented.application",
         "service_oriented.application.config",
+        "service_oriented.containers",
     ]
     return find_packages(
         ".",

@@ -10,6 +10,7 @@ charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 cryptography==41.0.7
+dependency-injector==4.41.0
 distlib==0.3.8
 dlint==0.14.1
 docopt==0.6.2
@@ -56,6 +57,7 @@ Pygments==2.17.2
 pyparsing==3.1.1
 pyproject_hooks==1.0.0
 pytest==7.4.4
+pytest-mock==3.12.0
 pytest-watch==4.2.0
 python-dotenv==1.0.0
 PyYAML==6.0.1
@@ -69,6 +71,7 @@ ruamel.yaml==0.18.5
 ruamel.yaml.clib==0.2.8
 safety==2.3.4
 SecretStorage==3.3.3
+six==1.16.0
 toml==0.10.2
 tomli==2.0.1
 twine==4.0.2
