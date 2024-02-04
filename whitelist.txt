@@ -2,8 +2,14 @@ dirname
 dotenv
 eq
 exinfo
+formatter
+jsonlogger
+levelname
 nonlocal
 param
 pydantic
+pythonjsonlogger
 unparameterized
+untyped
+usefixtures
 validator

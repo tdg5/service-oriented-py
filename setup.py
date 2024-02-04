@@ -14,6 +14,7 @@ _dependencies = [
     "dependency-injector~=4.41.0",
     "pydantic-settings~=2.1.0",
     "pydantic~=2.5.3",
+    "python-json-logger==2.0.7",
 ]
 
 _dev_dependencies = [
@@ -44,6 +45,7 @@ def _setup_packages() -> List:
         "service_oriented.application",
         "service_oriented.application.config",
         "service_oriented.containers",
+        "service_oriented.logging",
     ]
     return find_packages(
         ".",
