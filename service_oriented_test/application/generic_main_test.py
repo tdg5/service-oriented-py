@@ -80,7 +80,7 @@ def test_build_config_builds_an_unparameterized_config_instance() -> None:
 
 
 class DummyApplication(Application):
-    def __init__(self, config: Config):
+    def __init__(self, config: Config) -> None:
         super().__init__(config=config)
         self.run_called = False
 

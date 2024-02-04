@@ -41,7 +41,7 @@ class BaseConfig(BaseSettings):
     entry_point: str
     yaml_config_path: Optional[str] = None
 
-    def __init__(self, *args: Any, **kwargs: Any):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if not self.model_config.get("env_nested_delimiter"):
             raise RuntimeError("env_nested_delimiter model config is required")
 

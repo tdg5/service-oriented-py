@@ -8,7 +8,7 @@ class DeploymentEnvironment:
         region: str,
         stage: str,
         vendor: str,
-    ):
+    ) -> None:
         self.identifier: str = identifier
         self.region: str = region
         self.stage: str = stage

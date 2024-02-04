@@ -13,7 +13,7 @@ class Config(BaseConfig, env_nested_delimiter="__", env_prefix="entry_point_spec
 
 
 class DummyEntryPoint:
-    def __init__(self, config: Config, arg_1: str, arg_2: str):
+    def __init__(self, config: Config, arg_1: str, arg_2: str) -> None:
         self.config = config
         self.arg_1 = arg_1
         self.arg_2 = arg_2

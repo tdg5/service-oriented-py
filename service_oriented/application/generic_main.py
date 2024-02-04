@@ -13,7 +13,7 @@ A = TypeVar("A", bound=BaseApplication)
 # TODO: The type annotation isn't quite right here because there's no
 # requirement that A is A[C].
 class GenericMain(Generic[C, A]):
-    def __init__(self, config: Optional[C] = None):
+    def __init__(self, config: Optional[C] = None) -> None:
         self.config = config or self._build_config()
         self.application = self._build_application(self.config)
 

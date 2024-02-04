@@ -15,7 +15,7 @@ class BaseApplication(Generic[C]):
         cls,
         entry_points: Optional[Dict[str, EntryPointSpec]] = None,
         **kwargs: Any,
-    ):
+    ) -> None:
         super().__init_subclass__(**kwargs)
         _entry_points = entry_points or {}
         cls.default_entry_points = _entry_points
@@ -24,7 +24,7 @@ class BaseApplication(Generic[C]):
         self,
         config: C,
         entry_points: Optional[Dict[str, EntryPointSpec]] = None,
-    ):
+    ) -> None:
         self.config: C = config
         _entry_points = entry_points or {}
         self.entry_points = {**self.default_entry_points, **_entry_points}

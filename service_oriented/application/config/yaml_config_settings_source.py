@@ -38,7 +38,7 @@ class YamlConfigSettingsSource(PydanticBaseSettingsSource):
         self,
         settings_cls: Type[BaseSettings],
         yaml_config_path: Optional[str] = None,
-    ):
+    ) -> None:
         super().__init__(settings_cls)
 
         self._yaml_config: Dict[str, Any] = self._load_yaml_config(yaml_config_path)
