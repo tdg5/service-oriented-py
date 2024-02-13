@@ -3,6 +3,8 @@ dotenv
 eq
 exinfo
 formatter
+initializer
+initializers
 jsonlogger
 levelname
 nonlocal

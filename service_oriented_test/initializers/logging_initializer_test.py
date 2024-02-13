@@ -3,11 +3,9 @@ from tempfile import NamedTemporaryFile
 from uuid import uuid4
 
 import pytest
-from dependency_injector.containers import DynamicContainer
-from dependency_injector.providers import Resource
 from pytest_mock import MockerFixture
 
-from service_oriented.containers.logging_config_resource import LoggingConfigResource
+from service_oriented.initializers.logging_initializer import LoggingInitializer
 
 
 def test_logging_should_not_be_configured_given_a_non_existent_file(
@@ -55,6 +53,5 @@ def test_raises_if_config_file_does_not_deserialize_to_dict(
 
 
 def exec_resource(yaml_path: str) -> None:
-    container = DynamicContainer()
-    container.logging = Resource(LoggingConfigResource, yaml_path)
-    container.logging()
+    subject = LoggingInitializer(yaml_path=yaml_path)
+    subject.initialize()

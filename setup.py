@@ -11,7 +11,6 @@ with open(VERSION_PATH, encoding="utf-8", mode="r") as f:
 
 _dependencies = [
     "PyYaml~=6.0.1",
-    "dependency-injector~=4.41.0",
     "pydantic-settings~=2.1.0",
     "pydantic~=2.5.3",
     "python-json-logger==2.0.7",
@@ -44,7 +43,7 @@ def _setup_packages() -> List:
         "service_oriented",
         "service_oriented.application",
         "service_oriented.application.config",
-        "service_oriented.containers",
+        "service_oriented.initializers",
         "service_oriented.logging",
     ]
     return find_packages(
