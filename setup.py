@@ -14,6 +14,7 @@ _dependencies = [
     "pydantic-settings~=2.1.0",
     "pydantic~=2.5.3",
     "python-json-logger==2.0.7",
+    "rodi~=2.0.6",
 ]
 
 _dev_dependencies = [
