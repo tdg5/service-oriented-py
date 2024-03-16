@@ -51,7 +51,7 @@ jobs:
           authorEmail: dannyguinther@gmail.com
           authorName: Danny Guinther
           commitMessage: "[skip actions] Update code coverage snapshot"
-          optionalFilePaths:
+          optionalFilePaths: |
             .meta/coverage/badge.svg
             .meta/coverage/report.txt
 
