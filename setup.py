@@ -19,6 +19,8 @@ _dependencies = [
 _dev_dependencies = [
     "black~=23.12.1",
     "build==1.0.3",
+    "coverage==7.4.4",
+    "coverage-badge==1.1.0",
     "dlint==0.14.1",
     "flake8-comprehensions==3.14.0",
     "flake8-eradicate==1.5.0",

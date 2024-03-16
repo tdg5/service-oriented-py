@@ -9,6 +9,8 @@ cfgv==3.4.0
 charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
+coverage==7.4.4
+coverage-badge==1.1.0
 cryptography==41.0.7
 distlib==0.3.8
 dlint==0.14.1

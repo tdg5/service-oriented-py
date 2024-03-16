@@ -36,5 +36,6 @@ jobs:
       - name: Run tests and build package
         run: |
           source venv/bin/activate
-          pytest
+          coverage run -m pytest
+          coverage report
           python -m build
