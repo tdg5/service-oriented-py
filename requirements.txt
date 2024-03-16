@@ -11,7 +11,7 @@ click==8.1.7
 colorama==0.4.6
 coverage==7.4.4
 coverage-badge==1.1.0
-cryptography==41.0.7
+cryptography==42.0.5
 distlib==0.3.8
 dlint==0.14.1
 docopt==0.6.2
