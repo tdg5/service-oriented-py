@@ -23,9 +23,17 @@ service_oriented_test/application/entry_point_spec_test.py                      
 service_oriented_test/application/generic_main_test.py                            65      2    97%
 service_oriented_test/conftest.py                                                  0      0   100%
 service_oriented_test/deployment_environment_test.py                              30      0   100%
+service_oriented_test/example_application/__init__.py                              0      0   100%
+service_oriented_test/example_application/app/__init__.py                          0      0   100%
+service_oriented_test/example_application/app/application.py                       4      0   100%
+service_oriented_test/example_application/app/config.py                            3      0   100%
+service_oriented_test/example_application/app/entry_points/__init__.py             0      0   100%
+service_oriented_test/example_application/app/entry_points/api.py                  8      2    75%
+service_oriented_test/example_application_test/app/application_test.py             3      0   100%
+service_oriented_test/example_application_test/app/config_test.py                 62      0   100%
 service_oriented_test/initializers/logging_initializer_test.py                    37      0   100%
 service_oriented_test/logging/normalized_json_formatter_test.py                   38      0   100%
 service_oriented_test/test_helpers/__init__.py                                     3      0   100%
 service_oriented_test/test_helpers/fixtures.py                                     2      0   100%
 --------------------------------------------------------------------------------------------------
-TOTAL                                                                            582      8    99%
+TOTAL                                                                            662     10    98%
