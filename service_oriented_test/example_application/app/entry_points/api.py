@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class ApiEntryPoint:
-    def __init__(self, config: Config):
+    def __init__(self, config: Config) -> None:
         self.config = config
 
     def run(self) -> None:
