@@ -1,4 +1,4 @@
-name: Style, test, build, and publish the package
+name: Style, test, and build package
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   style-test-and-build:
-    name: Test, build, and publish the package
+    name: Style, test, and build package
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +22,18 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
+
+      - name: Check requirements.txt is up to date
+        run: |
+          source venv/bin/activate
+          pip install .[all]
+          pip uninstall -y service-oriented
+          pip freeze > requirements.txt
+          git diff --quiet
+          if [ ! $? -eq 0 ]; then
+            echo "pip freeze caused file changes, failing!"
+            exit 1
+          fi
 
       - name: Check style
         run: |
