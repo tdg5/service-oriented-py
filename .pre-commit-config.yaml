@@ -11,12 +11,12 @@ repos:
         name: black
         language: system
         entry: black
-        args: ["service_oriented", "service_oriented_test"]
+        args: ["--preview"]
         types: [python]
       - id: flake8
         name: flake8
         language: python
-        entry: flake8
+        entry: flake8p
         args: ["service_oriented", "service_oriented_test"]
         types: [python]
         additional_dependencies:

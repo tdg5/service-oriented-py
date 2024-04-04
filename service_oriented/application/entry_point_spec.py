@@ -16,10 +16,10 @@ C = TypeVar("C", bound=BaseConfig)
 
 class _EntryPointClass(Protocol[P]):
     def __init__(self, config: C, *args: P.args, **kwargs: P.kwargs) -> None:
-        ...  # pragma: no cover
+        pass  # pragma: no cover
 
     def run(self) -> None:
-        ...  # pragma: no cover
+        pass  # pragma: no cover
 
 
 class EntryPointSpec:
