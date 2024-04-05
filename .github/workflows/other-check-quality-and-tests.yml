@@ -29,8 +29,7 @@ jobs:
           pip install .[all]
           pip uninstall -y service-oriented
           pip freeze > requirements.txt
-          git diff --quiet
-          if [ ! $? -eq 0 ]; then
+          if ! `git diff --quiet`; then
             echo "pip freeze caused file changes, failing!"
             exit 1
           fi
@@ -39,8 +38,7 @@ jobs:
         run: |
           source venv/bin/activate
           make style
-          git diff --quiet
-          if [ ! $? -eq 0 ]; then
+          if ! `git diff --quiet`; then
             echo "make style caused file changes, failing!"
             exit 1
           fi
