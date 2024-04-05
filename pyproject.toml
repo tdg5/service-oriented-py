@@ -26,9 +26,7 @@ dependencies = [
   "pyyaml~=6.0.1",
 ]
 description = "Toolkit for building service oriented applications in python"
-dynamic = [
-  "version",
-]
+dynamic = ["version"]
 license = {text = "MIT"}
 name = "service_oriented"
 readme = "README.md"
@@ -58,6 +56,7 @@ dev = [
   "twine~=4.0.2",
   "wheel>=0.42.0",
 ]
+all = ["service-oriented[dev]"]
 
 [project.urls]
 Homepage = "https://github.com/tdg5/service-oriented-py"
@@ -105,7 +104,6 @@ markers = ["integration_test: marks tests as integration tests (deselect with '-
 "service_oriented" = ["py.typed"]
 
 [tool.setuptools.packages.find]
-exclude = ["*.__pycache__.*"]
 include = [
   "service_oriented",
   "service_oriented.application",
