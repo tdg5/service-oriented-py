@@ -1,2 +1,0 @@
-include VERSION
-include service_oriented/py.typed

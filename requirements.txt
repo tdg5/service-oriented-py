@@ -69,6 +69,7 @@ ruamel.yaml==0.18.5
 ruamel.yaml.clib==0.2.8
 safety==2.3.4
 SecretStorage==3.3.3
+setuptools-scm==8.0.4
 toml==0.10.2
 tomli==2.0.1
 twine==4.0.2
