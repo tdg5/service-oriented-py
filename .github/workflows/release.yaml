@@ -85,7 +85,6 @@ jobs:
           git tag -m "$RELEASE_NAME" "$RELEASE_NAME"
           git push origin "$RELEASE_NAME"
 
-          echo -n "$GITHUB_TOKEN" | gh auth login --with-token
           gh release create \
             --generate-notes \
             --target "$GITHUB_REF" \
