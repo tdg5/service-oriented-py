@@ -2,10 +2,7 @@ from typing import cast
 
 from service_oriented.application.config import BaseConfig
 from service_oriented.application.entry_point_spec import EntryPointSpec
-from service_oriented_test.test_helpers import (
-    TEST_DEPLOYMENT_ENVIRONMENT,
-    TEST_ENTRY_POINT,
-)
+from service_oriented_test.fixtures import TEST_DEPLOYMENT_ENVIRONMENT, TEST_ENTRY_POINT
 
 
 class Config(BaseConfig, env_nested_delimiter="__", env_prefix="entry_point_spec_test"):

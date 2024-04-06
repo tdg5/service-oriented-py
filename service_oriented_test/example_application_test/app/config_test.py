@@ -5,7 +5,7 @@ import pytest
 from pydantic import ValidationError
 
 from service_oriented_test.example_application.app.config import Config
-from service_oriented_test.test_helpers import TEST_DEPLOYMENT_ENVIRONMENT
+from service_oriented_test.fixtures import TEST_DEPLOYMENT_ENVIRONMENT
 
 
 def test_deployment_environment_is_accessible() -> None:

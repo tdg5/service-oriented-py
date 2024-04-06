@@ -11,6 +11,8 @@ TEST_DEPLOYMENT_ENVIRONMENT = DeploymentEnvironment(
     vendor="test",
 )
 
+TEST_ENTRY_POINT = "test"
+
 
 def fixture_path(fixture_path: str) -> str:
     fixtures_path = Path(__file__).parent

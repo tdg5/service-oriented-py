@@ -5,10 +5,7 @@ from service_oriented import DeploymentEnvironment
 from service_oriented.application.base_application import BaseApplication
 from service_oriented.application.config import BaseConfig
 from service_oriented.application.generic_main import GenericMain
-from service_oriented_test.test_helpers import (
-    TEST_DEPLOYMENT_ENVIRONMENT,
-    TEST_ENTRY_POINT,
-)
+from service_oriented_test.fixtures import TEST_DEPLOYMENT_ENVIRONMENT, TEST_ENTRY_POINT
 
 
 class Config(

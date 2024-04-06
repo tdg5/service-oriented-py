@@ -2,10 +2,7 @@ from typing import Optional
 
 from service_oriented import DeploymentEnvironment
 from service_oriented_test.example_application.app.config import Config
-from service_oriented_test.test_helpers.fixtures import (
-    TEST_DEPLOYMENT_ENVIRONMENT,
-    fixture_path,
-)
+from service_oriented_test.fixtures import TEST_DEPLOYMENT_ENVIRONMENT, fixture_path
 
 
 def config(
