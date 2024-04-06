@@ -72,6 +72,11 @@ jobs:
           source venv/bin/activate
           python -m twine upload dist/*
 
+      - name: Configure git actor
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Create and push tag for published version
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_ACTIONS }}
