@@ -90,5 +90,3 @@ jobs:
             --target "$GITHUB_REF" \
             --title "$RELEASE_NAME" \
             "$RELEASE_NAME"
-
-
