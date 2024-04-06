@@ -8,8 +8,8 @@ from pytest_mock import MockerFixture
 from rodi import Container
 
 from service_oriented.services.logger_service import (
-    AbstractLoggerService,
     LoggerService,
+    LoggerServiceWithYamlLoggingConfig,
 )
 from service_oriented_test.example_application.app.entry_points.printer import (
     PrinterEntryPoint,
@@ -17,7 +17,7 @@ from service_oriented_test.example_application.app.entry_points.printer import (
 from service_oriented_test.example_application_test import factories
 
 
-class DefaultLoggerService(AbstractLoggerService):
+class DefaultLoggerService(LoggerService):
     def get_logger(self, name: str) -> Logger:
         # This keeps the type checker happy, but really, a test should patch
         # this function on an instance for optimal control.
@@ -29,7 +29,7 @@ class PrinterEntryPointWithCustomContainer(PrinterEntryPoint):
     def container(self) -> Generator[Container, None, None]:
         try:
             container = Container()
-            container.add_instance(DefaultLoggerService(), AbstractLoggerService)
+            container.add_instance(DefaultLoggerService(), LoggerService)
             yield container
         finally:
             pass
@@ -42,7 +42,8 @@ def test_container_includes_a_logger_service(mocker: MockerFixture) -> None:
     with printer_entry_point.container() as container:
         assert 1 == spy.call_count
         provider = container.build_provider()
-        assert isinstance(provider.get(AbstractLoggerService), LoggerService)
+        logger_service = provider.get(LoggerService)
+        assert isinstance(logger_service, LoggerServiceWithYamlLoggingConfig)
 
 
 def test_run_logs_hello_world(mocker: MockerFixture) -> None:

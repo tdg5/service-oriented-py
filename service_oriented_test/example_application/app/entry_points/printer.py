@@ -7,8 +7,8 @@ from service_oriented.application.abstract_composition_root import (
     AbstractCompositionRoot,
 )
 from service_oriented.services.logger_service import (
-    AbstractLoggerService,
     LoggerService,
+    LoggerServiceWithYamlLoggingConfig,
 )
 from service_oriented_test.example_application.app.config import Config
 
@@ -22,14 +22,16 @@ class PrinterEntryPoint(AbstractCompositionRoot[Config, Container]):
         try:
             container = Container()
             container.add_instance(
-                LoggerService(yaml_path=self.config.logging_config_yaml_path),
-                AbstractLoggerService,
+                LoggerServiceWithYamlLoggingConfig(
+                    yaml_path=self.config.logging_config_yaml_path,
+                ),
+                LoggerService,
             )
             yield container
         finally:
             pass
 
     def run_with_services(self, services: Services) -> None:
-        logger_service = services.get(AbstractLoggerService)
+        logger_service = services.get(LoggerService)
         logger = logger_service.get_logger(__name__)
         logger.info("hello world")
