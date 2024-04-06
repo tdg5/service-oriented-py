@@ -1,16 +1,19 @@
+import logging
 import os
+from logging import Logger
 from logging import config as logging_config
 from typing import Dict
 
 import yaml
 
+from service_oriented.services.logger_service.abstract_logger_service import (
+    AbstractLoggerService,
+)
 
-class LoggingInitializer:
+
+class LoggerService(AbstractLoggerService):
     def __init__(self, yaml_path: str) -> None:
-        self.yaml_path: str = yaml_path
-
-    def initialize(self) -> None:
-        config = self._load_yaml_config(yaml_path=self.yaml_path)
+        config = self._load_yaml_config(yaml_path=yaml_path)
         if config:
             logging_config.dictConfig(config)
 
@@ -27,3 +30,6 @@ class LoggingInitializer:
             )
 
         return config
+
+    def get_logger(self, name: str) -> Logger:
+        return logging.getLogger(name)

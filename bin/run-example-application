@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -eo pipefail
+
+if [ -n "$1" ]; then
+  ENTRY_POINT="$1"
+else
+  ENTRY_POINT="printer"
+fi
+
+# From https://stackoverflow.com/a/4774063
+REPO_DIR="$( cd -- "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
+
+export \
+  EXAMPLE_APPLICATION_DEPLOYMENT_ENVIRONMENT=test:test:test:test \
+  EXAMPLE_APPLICATION_ENTRY_POINT="$ENTRY_POINT" \
+  EXAMPLE_APPLICATION_LOGGING_CONFIG_YAML_PATH="$REPO_DIR/service_oriented_test/test_helpers/fixtures/logging_config.yaml"
+
+python -m service_oriented_test.example_application.main
