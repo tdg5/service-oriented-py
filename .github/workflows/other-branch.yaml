@@ -48,5 +48,4 @@ jobs:
           source venv/bin/activate
           coverage run -m pytest
           coverage report
-          export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_SERVICE_ORIENTED="$(cat VERSION)"
           python -m build
