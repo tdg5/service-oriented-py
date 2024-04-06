@@ -2,13 +2,11 @@ from abc import ABC, abstractmethod
 from contextlib import contextmanager
 from typing import Generator, Generic, TypeVar
 
-from rodi import Container, Services
-
 from service_oriented.application.config import BaseConfig
 
 
 SomeConfig = TypeVar("SomeConfig", bound=BaseConfig)
-SomeContainer = TypeVar("SomeContainer", bound=Container)
+SomeContainer = TypeVar("SomeContainer")
 
 
 class AbstractCompositionRoot(Generic[SomeConfig, SomeContainer], ABC):
@@ -17,8 +15,7 @@ class AbstractCompositionRoot(Generic[SomeConfig, SomeContainer], ABC):
 
     def run(self) -> None:
         with self.container() as container:
-            services = container.build_provider()
-            self.run_with_services(services=services)
+            self.run_with_container(container=container)
 
     @contextmanager
     @abstractmethod
@@ -26,5 +23,5 @@ class AbstractCompositionRoot(Generic[SomeConfig, SomeContainer], ABC):
         pass
 
     @abstractmethod
-    def run_with_services(self, services: Services) -> None:
+    def run_with_container(self, container: SomeContainer) -> None:
         pass

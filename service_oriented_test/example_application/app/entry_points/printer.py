@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from typing import Generator
 
-from rodi import Container, Services
+from rodi import Container
 
 from service_oriented.application.abstract_composition_root import (
     AbstractCompositionRoot,
@@ -31,7 +31,8 @@ class PrinterEntryPoint(AbstractCompositionRoot[Config, Container]):
         finally:
             pass
 
-    def run_with_services(self, services: Services) -> None:
+    def run_with_container(self, container: Container) -> None:
+        services = container.build_provider()
         logger_service = services.get(LoggerService)
         logger = logger_service.get_logger(__name__)
         logger.info("hello world")
