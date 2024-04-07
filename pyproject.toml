@@ -70,13 +70,16 @@ line-length = 88
 target-version = ["py39"]
 
 [tool.coverage.run]
+omit = [
+  "service_oriented/__version__.py",
+]
 source = [
   "service_oriented",
   "service_oriented_test/example_application",
 ]
 
 [tool.coverage.report]
-fail_under = 90
+fail_under = 94
 
 [tool.flake8]
 ignore = ["E203", "E251", "E701", "N805", "W503", "DAR101", "DAR201", "DAR301", "DAR401"]
