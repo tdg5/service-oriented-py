@@ -22,6 +22,6 @@ service_oriented_test/example_application/app/application.py                    
 service_oriented_test/example_application/app/config.py                                   3      0   100%
 service_oriented_test/example_application/app/entry_points/__init__.py                    0      0   100%
 service_oriented_test/example_application/app/entry_points/printer.py                    21      0   100%
-service_oriented_test/example_application/main.py                                         6      6     0%
+service_oriented_test/example_application/main.py                                         5      0   100%
 ---------------------------------------------------------------------------------------------------------
-TOTAL                                                                                   259     15    94%
+TOTAL                                                                                   258      9    97%

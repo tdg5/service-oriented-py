@@ -7,5 +7,5 @@ class Main(GenericMain[Config, Application]):
     pass
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     Main().run()  # pragma: no cover
