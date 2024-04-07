@@ -20,8 +20,8 @@ class AbstractCompositionRoot(Generic[SomeConfig, SomeContainer], ABC):
     @contextmanager
     @abstractmethod
     def container(self) -> Generator[SomeContainer, None, None]:
-        pass
+        pass  # pragma: no cover
 
     @abstractmethod
     def run_with_container(self, container: SomeContainer) -> None:
-        pass
+        pass  # pragma: no cover

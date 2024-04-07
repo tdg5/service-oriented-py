@@ -1,8 +1,8 @@
 Name                                                                                  Stmts   Miss  Cover
 ---------------------------------------------------------------------------------------------------------
 service_oriented/__init__.py                                                              2      0   100%
-service_oriented/application/__init__.py                                                  4      0   100%
-service_oriented/application/abstract_composition_root.py                                19      3    84%
+service_oriented/application/__init__.py                                                  5      0   100%
+service_oriented/application/abstract_composition_root.py                                17      0   100%
 service_oriented/application/base_application.py                                         22      0   100%
 service_oriented/application/config/__init__.py                                           2      0   100%
 service_oriented/application/config/base_config.py                                       27      0   100%
@@ -24,4 +24,4 @@ service_oriented_test/example_application/app/entry_points/__init__.py          
 service_oriented_test/example_application/app/entry_points/printer.py                    21      0   100%
 service_oriented_test/example_application/main.py                                         5      0   100%
 ---------------------------------------------------------------------------------------------------------
-TOTAL                                                                                   258      9    97%
+TOTAL                                                                                   257      6    98%
