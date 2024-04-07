@@ -2,7 +2,7 @@
 build-backend = "setuptools.build_meta"
 requires = [
   "setuptools>=69",
-  "setuptools-scm>=8.0.4"
+  "setuptools-scm>=8.0.4",
 ]
 
 [project]
@@ -74,6 +74,9 @@ source = [
   "service_oriented",
   "service_oriented_test/example_application",
 ]
+
+[tool.coverage.report]
+fail_under = 90
 
 [tool.flake8]
 ignore = ["E203", "E251", "E701", "N805", "W503", "DAR101", "DAR201", "DAR301", "DAR401"]
