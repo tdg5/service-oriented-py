@@ -34,7 +34,7 @@ requires-python = ">3.9.0"
 
 [project.optional-dependencies]
 dev = [
-  "black~=24.2.0",
+  "black~=24.2",
   "build~=1.0.3",
   "coverage-badge~=1.1.0",
   "coverage~=7.4.4",

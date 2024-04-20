@@ -1,6 +1,6 @@
 annotated-types==0.6.0
 attrs==23.2.0
-black==24.2.0
+black==24.4.0
 build==1.0.3
 certifi==2023.11.17
 cffi==1.16.0
