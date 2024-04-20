@@ -6,16 +6,16 @@ service_oriented/application/abstract_composition_root.py                       
 service_oriented/application/base_application.py                                         22      0   100%
 service_oriented/application/config/__init__.py                                           2      0   100%
 service_oriented/application/config/base_config.py                                       27      0   100%
-service_oriented/application/config/yaml_config_settings_source.py                       31      1    97%
+service_oriented/application/config/yaml_config_settings_source.py                       30      0   100%
 service_oriented/application/entry_point_spec.py                                         21      0   100%
-service_oriented/application/generic_main.py                                             32      2    94%
+service_oriented/application/generic_main.py                                             32      0   100%
 service_oriented/deployment_environment.py                                               18      0   100%
 service_oriented/logging/__init__.py                                                      2      0   100%
-service_oriented/logging/normalized_json_formatter.py                                    16      2    88%
+service_oriented/logging/normalized_json_formatter.py                                    16      0   100%
 service_oriented/services/__init__.py                                                     0      0   100%
 service_oriented/services/logger_service/__init__.py                                      3      0   100%
 service_oriented/services/logger_service/logger_service.py                                4      0   100%
-service_oriented/services/logger_service/logger_service_with_yaml_logging_config.py      22      1    95%
+service_oriented/services/logger_service/logger_service_with_yaml_logging_config.py      22      0   100%
 service_oriented_test/example_application/__init__.py                                     0      0   100%
 service_oriented_test/example_application/app/__init__.py                                 0      0   100%
 service_oriented_test/example_application/app/application.py                              4      0   100%
@@ -24,4 +24,4 @@ service_oriented_test/example_application/app/entry_points/__init__.py          
 service_oriented_test/example_application/app/entry_points/printer.py                    21      0   100%
 service_oriented_test/example_application/main.py                                         5      0   100%
 ---------------------------------------------------------------------------------------------------------
-TOTAL                                                                                   257      6    98%
+TOTAL                                                                                   256      0   100%
