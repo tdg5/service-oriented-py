@@ -58,7 +58,7 @@ class YamlConfigSettingsSource(PydanticBaseSettingsSource):
         field_name: str,
     ) -> Tuple[Any, str, bool]:
         # We're not required to do anything here. Implement return to make mypy happy.
-        return None, "", False
+        return None, "", False  # pragma: no cover
 
     def __call__(self) -> Dict[str, Any]:
         return self._yaml_config

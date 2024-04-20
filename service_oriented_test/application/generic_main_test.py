@@ -1,5 +1,7 @@
 import os
-from typing import Optional, cast
+from typing import Optional, Type, cast
+
+import pytest
 
 from service_oriented import DeploymentEnvironment
 from service_oriented.application.base_application import BaseApplication
@@ -35,6 +37,18 @@ class Application(BaseApplication[Config]):
 
 class Main(GenericMain[Config, Application]):
     pass
+
+
+class UndefinedApplicationMain(GenericMain):
+    @classmethod
+    def config_class(cls) -> Type[Config]:
+        return Config
+
+
+class UndefinedConfigMain(GenericMain):
+    @classmethod
+    def application_class(cls) -> Type[Application]:
+        return Application
 
 
 def test_init_can_take_a_config_instance() -> None:
@@ -103,3 +117,18 @@ def test_run_runs_the_application() -> None:
     subject = MainWithDummyApp(config=config)
     subject.run()
     assert cast(DummyApplication, subject.application).run_called
+
+
+def test_an_exception_is_raised_if_the_application_class_cannot_be_determined() -> None:
+    config = make_config()
+    with pytest.raises(RuntimeError) as exinfo:
+        UndefinedApplicationMain(config=config)
+    assert RuntimeError == exinfo.type
+    assert "Unable to determine application class" in str(exinfo)
+
+
+def test_an_exception_is_raised_if_the_config_class_cannot_be_determined() -> None:
+    with pytest.raises(RuntimeError) as exinfo:
+        UndefinedConfigMain()
+    assert RuntimeError == exinfo.type
+    assert "Unable to determine config class" in str(exinfo)

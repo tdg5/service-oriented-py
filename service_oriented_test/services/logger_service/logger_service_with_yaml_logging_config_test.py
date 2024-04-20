@@ -25,9 +25,11 @@ def test_logging_should_be_configured_by_valid_yaml(
         temp_file.file.write("version: 1")
         temp_file.seek(0)
         spy = mocker.spy(logging_config, "dictConfig")
-        LoggerServiceWithYamlLoggingConfig(yaml_path=temp_file.name)
+        logger_service = LoggerServiceWithYamlLoggingConfig(yaml_path=temp_file.name)
         assert 1 == spy.call_count
         spy.assert_called_once_with({"version": 1})
+        logger = logger_service.get_logger(__name__)
+        assert __name__ == logger.name
 
 
 def test_raises_if_config_file_is_invalid(
